@@ -1,0 +1,64 @@
+﻿Rayls vault launch deposits, read-only check   (all times UTC)
+
+1. Deposit cap, read from each setLimits transaction
+  2026-10-15 14:51:57   total cap   100,000   per wallet 100,000 BRL1.p
+  2026-10-16 15:00:02   total cap   250,000   per wallet 100,000 BRL1.p
+  2026-10-19 15:50:40   total cap 1,000,000   per wallet 100,000 BRL1.p
+
+  250,000 cap set at 15:00:02, deposit that filled it at 15:39:20
+  -> filled in 39 min 18 s
+Rayls vault launch deposits, read-only check   (all times UTC)
+
+2. The 19 Oct changes, read from each transaction
+  block 12820048  15:48:50  from 0x633a...1ce1  new contract created (code for the upgrade)
+  block 12820048  15:48:50  from 0x633a...1ce1  upgradeToAndCall -> code 0x39bf...7acb
+  block 12820095  15:49:53  from 0x633a...1ce1  0xf2eab735(5000)
+  block 12820103  15:50:03  from 0x633a...1ce1  setWeek(week 2, rate 4,000)
+  block 12820108  15:50:10  from 0x633a...1ce1  setWeek(week 3, rate 3,000)
+  block 12820112  15:50:15  from 0x633a...1ce1  setWeek(week 4, rate 2,000)
+  block 12820131  15:50:40  from 0x633a...1ce1  setLimits(total 1,000,000)
+
+  -> new code created and switched on in the same block (12820048)
+Rayls vault launch deposits, read-only check   (all times UTC)
+
+3. The contract now
+  code in use     0x39bf309dba73c90f93f9af74eedb673f53447acb
+  VERSION()       1.1.0
+  current week    2 of 4
+  week 1          5,000 RLS per 1,000 BRL1.p, deposits until 2026-10-22 23:59:59
+  week 2          4,000 RLS per 1,000 BRL1.p, deposits until 2026-10-29 23:59:59
+  week 3          3,000 RLS per 1,000 BRL1.p, deposits until 2026-11-05 23:59:59
+  week 4          2,000 RLS per 1,000 BRL1.p, deposits until 2026-11-12 23:59:59
+  limits          min 1, per wallet 100,000, total 1,000,000 BRL1.p
+  deposited       250,000 BRL1.p from 6 wallets
+  vault()         not set (0x000...000)
+  lock ends       2026-11-19 23:59:59
+Rayls vault launch deposits, read-only check   (all times UTC)
+
+4. Who can change it
+  DEFAULT_ADMIN_ROLE  held by 0x633a...1ce1 : yes
+  UPGRADER_ROLE       held by 0x633a...1ce1 : yes
+  OPERATOR_ROLE       held by 0x633a...1ce1 : yes
+  PAUSER_ROLE         held by 0x633a...1ce1 : yes
+
+  code stored at 0x633a...1ce1: 0 bytes
+  -> an ordinary wallet with one key, not a multisig contract
+Rayls vault launch deposits, read-only check   (all times UTC)
+
+5. What each depositor was credited
+  0x4d76...7e22  week-1 deposit         1   RLS         10  = 10,000 per 1,000
+  0xc7e3...f554  week-1 deposit    375.89   RLS   3,758.95  = 10,000 per 1,000
+  0x9390...8454  week-1 deposit   4,720.2   RLS     47,202  = 10,000 per 1,000
+  0x3d6c...b2b3  week-1 deposit 94,828.78   RLS 948,287.82  = 10,000 per 1,000
+  0x9f93...0603  week-1 deposit   100,000   RLS  1,000,000  = 10,000 per 1,000
+  0x4dee...8fdc  week-1 deposit 50,074.12   RLS  500,741.2  = 10,000 per 1,000
+
+  week-1 deposits x week-1 rate today (5,000)   : 1,250,000 RLS
+  RLS credited to the same wallets              : 2,500,000 RLS
+Rayls vault launch deposits, read-only check   (all times UTC)
+
+6. BRL1.p
+  total supply          250,013.48
+  held by the contract  250,000
+
+finished  2026-10-23 14:03:22
