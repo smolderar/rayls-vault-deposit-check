@@ -1,0 +1,43 @@
+Events emitted by the launch-deposit contract 0x5B9565e27F5d50B14D3f660799f87e829A53fab2
+Source: explorer.rayls.com API /api/v2/addresses/<contract>/logs, read 24 Oct 2026 (UTC). 29 transactions, no further pages.
+Amounts are BRL1.p and RLS with 18 decimals, shown here in whole units.
+
+14 Oct 17:53:08  block 12501578  tx 0xf863ec4342d492ddb661aafbfe737cce7ebc759cbbd7b9df614edcb10fe63bbf  (deployment and initialize)
+  Upgraded         implementation 0x39FfAe6736A9477797548a17019d544c3dbE9f67 (VaultSeed 1.0.0)
+  RoleGranted      DEFAULT_ADMIN_ROLE -> 0x633Ac5e2315b973417e8caa6B3Ad2162e0461ce1
+  RoleGranted      OPERATOR_ROLE      -> 0x633Ac5...1ce1
+  RoleGranted      WHITELIST_MANAGER  -> 0x633Ac5...1ce1
+  RoleGranted      PAUSER_ROLE        -> 0x633Ac5...1ce1
+  RoleGranted      UPGRADER_ROLE      -> 0x633Ac5...1ce1
+  WeekSet          week 1  rlsPerThousand 10000  deadline 2026-10-22 23:59:59
+  WeekSet          week 2  rlsPerThousand 8000   deadline 2026-10-29 23:59:59
+  WeekSet          week 3  rlsPerThousand 6000   deadline 2026-11-05 23:59:59
+  WeekSet          week 4  rlsPerThousand 4000   deadline 2026-11-12 23:59:59
+  DepositStartSet  2026-10-14 00:00:00
+  LockEndSet       2026-11-19 23:59:59
+  LimitsSet        min 1, per wallet 100,000, total 500,000
+  Initialized      version 1
+14 Oct 17:56:26  RoleGranted WHITELIST_MANAGER -> 0x7513D6A402e582d180CfCd6d30C6d4E657451431 (sender 0x633A...1ce1)
+15 Oct 11:00:31 to 16 Oct 19:23:12  WhitelistUpdated for 11 accounts (not listed here)
+15 Oct 11:07:51  Deposited  0x4d76...7e22  week 1  amount 1               rlsEarned 10
+15 Oct 11:56:34  Deposited  0xc7e3...f554  week 1  amount 10              rlsEarned 100
+15 Oct 14:51:57  LimitsSet  total 100,000
+15 Oct 15:51:38  Deposited  0x9390...8454  week 1  amount 50.161295       rlsEarned 501.61295
+15 Oct 16:10:09  Deposited  0x9390...8454  week 1  amount 4,670.039696    rlsEarned 46,700.39696
+15 Oct 16:38:00  Deposited  0x3d6c...b2b3  week 1  amount 94,828.782983   rlsEarned 948,287.82983
+15 Oct 20:37:13  Deposited  0xc7e3...f554  week 1  amount 365.895698      rlsEarned 3,658.95698
+16 Oct 15:00:02  LimitsSet  total 250,000
+16 Oct 15:06:15  Deposited  0x9f93...0603  week 1  amount 100,000         rlsEarned 1,000,000
+16 Oct 15:18:02  Deposited  0x4dee...8fdc  week 1  amount 46,994.594239   rlsEarned 469,945.94239
+16 Oct 15:39:20  Deposited  0x4dee...8fdc  week 1  amount 3,079.526089    rlsEarned 30,795.26089
+19 Oct 15:48:50  block 12820048  Upgraded  implementation 0x39Bf309Dba73c90F93f9aF74eEdB673f53447aCB (1.1.0)   (no Initialized event)
+19 Oct 15:49:53  block 12820095  WeekSet  week 1  rlsPerThousand 5000   (call 0xf2eab735 = setOpenWeekRate)
+19 Oct 15:50:03  block 12820103  WeekSet  week 2  rlsPerThousand 4000
+19 Oct 15:50:10  block 12820108  WeekSet  week 3  rlsPerThousand 3000
+19 Oct 15:50:15  block 12820112  WeekSet  week 4  rlsPerThousand 2000
+19 Oct 15:50:40  block 12820131  LimitsSet  total 1,000,000
+
+Read from this list:
+- Week 1 was 10,000 RLS per 1,000 BRL1.p from launch until 19 Oct 15:49:53, then 5,000.
+- Every Deposited event is week 1 with rlsEarned = amount x 10, all before the upgrade. No deposit after 16 Oct 15:39:20.
+- Only 0x633A...1ce1 was ever granted DEFAULT_ADMIN, UPGRADER, OPERATOR or PAUSER. 0x7513...1431 holds WHITELIST_MANAGER only. No RoleRevoked events.

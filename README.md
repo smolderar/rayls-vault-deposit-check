@@ -2,7 +2,7 @@
 
 **Short answer:** yes, when one key can upgrade the code. On 19 Oct 2026 the launch-deposit contract of the first Rayls vault was upgraded in a single block by one account that holds every admin role, and the new code changed the reward rate of a week that was still open. The verified original code blocked that. Every deposit had arrived three days earlier and no depositor's credited reward was cut. Everything below can be re-checked with the scripts in this repo, which only read public data.
 
-All times are UTC. Contract state read on 23 Oct 2026 14:03 from `https://mainnet-rpc.rayls.com` and cross-checked on `explorer.rayls.com`; deposit list re-checked on the explorer on 24 Oct 2026.
+All times are UTC. Contract state read on 23 Oct 2026 14:03 from `https://mainnet-rpc.rayls.com` and cross-checked on `explorer.rayls.com`; the contract's full event history (`contract-events.txt`) read from the explorer API on 24 Oct 2026.
 
 ## Contracts and transactions
 
@@ -28,7 +28,7 @@ All times are UTC. Contract state read on 23 Oct 2026 14:03 from `https://mainne
 
 From `vault-report-v3-20261023-1402-UTC.txt` (output of `vault-check.ps1`), `code-dump-log.txt`, the two comparison scripts and the explorer:
 
-1. **Deposits.** Nine BRL1.p deposits from six wallets, all between 15 Oct 11:07:51 and 16 Oct 15:39:20, sum 250,000. The explorer lists no deposit after that (checked 24 Oct), even though the cap went to 1,000,000 on 19 Oct.
+1. **Deposits.** Nine BRL1.p deposits from six wallets, all between 15 Oct 11:07:51 and 16 Oct 15:39:20, sum 250,000. Each `Deposited` event is week 1 with `rlsEarned` = amount x 10. No deposit after that (checked 24 Oct), even though the cap went to 1,000,000 on 19 Oct.
 
    | Time (UTC) | Wallet | BRL1.p |
    |---|---|---|
@@ -42,12 +42,12 @@ From `vault-report-v3-20261023-1402-UTC.txt` (output of `vault-check.ps1`), `cod
    | 16 Oct 15:18:02 | 0x4dee...8fdc | 46,994.594239 |
    | 16 Oct 15:39:20 | 0x4dee...8fdc | 3,079.526089 |
 
-2. **Cap history.** Total cap 100,000 BRL1.p on 15 Oct 14:51:57, 250,000 on 16 Oct 15:00:02, 1,000,000 on 19 Oct 15:50:40. The deposit that filled the 250,000 cap landed at 15:39:20, 39 min 18 s after the raise.
-3. **The upgrade.** In block 12820048 (19 Oct 15:48:50) `0x633a...1ce1` deployed new code and called `upgradeToAndCall` to it. Same block, so no onchain waiting period. The new code returns `VERSION()` = 1.1.0 (also read directly from both implementations: old 1.0.0, new 1.1.0). As of 23 Oct its source is not published on the explorer.
-4. **The rate change.** 63 seconds later (block 12820095) the same account called `0xf2eab735` with 5000. The transaction log shows `WeekSet(week 1, rlsPerThousand 5000)`. Week 1 was still open (deposits until 22 Oct 23:59:59). `0xf2eab735` is the first 4 bytes of `keccak256("setOpenWeekRate(uint128)")`, matched by hashing the candidate name. Weeks 2 to 4 were then set to 4,000 / 3,000 / 2,000 with `setWeek`, and the total cap to 1,000,000.
+2. **Cap history.** The initializer set a total cap of 500,000 at deployment (14 Oct). Then `setLimits`: 100,000 BRL1.p on 15 Oct 14:51:57, 250,000 on 16 Oct 15:00:02, 1,000,000 on 19 Oct 15:50:40. The deposit that filled the 250,000 cap landed at 15:39:20, 39 min 18 s after the raise.
+3. **The upgrade.** In block 12820048 (19 Oct 15:48:50) `0x633a...1ce1` deployed new code and called `upgradeToAndCall` to it. Same block, so no onchain waiting period. The upgrade emitted only `Upgraded`, no `Initialized`, so no re-initializer ran. The new code returns `VERSION()` = 1.1.0 (also read directly from both implementations: old 1.0.0, new 1.1.0). As of 23 Oct its source is not published on the explorer.
+4. **The rate change.** At deployment the contract logged `WeekSet` for weeks 1 to 4 at 10,000 / 8,000 / 6,000 / 4,000. On 19 Oct, 63 seconds after the upgrade (block 12820095), the same account called `0xf2eab735` with 5000. The transaction log shows `WeekSet(week 1, rlsPerThousand 5000)`. Week 1 was still open (deposits until 22 Oct 23:59:59). `0xf2eab735` is the first 4 bytes of `keccak256("setOpenWeekRate(uint128)")`, matched by hashing the candidate name. Weeks 2 to 4 were then set to 4,000 / 3,000 / 2,000 with `setWeek`, and the total cap to 1,000,000.
 5. **Which functions exist.** `compare_selectors.py` lists the dispatcher selectors of both bytecodes: old 14,217 bytes with 56 selectors, new 14,657 bytes with the same 56 plus `0xf2eab735` (setOpenWeekRate) and `0xb5190e4a` (a getter that reads one new stored value; name not recovered). The planned staking-payout call is not among them.
 6. **What changed inside the code.** `opcode_diff.py` compares the two opcode streams, masking only values that point at jump destinations (they move whenever code is added). Similarity is 97.2 percent across 60 differing regions: 13 are the dispatcher re-ordered around the two new selectors, 34 are data offsets shifted by the same 408 bytes, 5 are new or moved code blocks, 3 load the same WeekSet event ID from code instead of inline, 1 is the compiler metadata, and 4 are changed constants: the version string (1.0.0 to 1.1.0) and, three times, the code's own address used by the UUPS upgrade check. I found no other change to the old functions. This is a bytecode reading, not the source.
-7. **Who can change it.** `0x633a...1ce1` holds DEFAULT_ADMIN_ROLE, UPGRADER_ROLE, OPERATOR_ROLE and PAUSER_ROLE, and has 0 bytes of code, so onchain it is one signing key, not a multisig contract.
+7. **Who can change it.** `0x633a...1ce1` holds DEFAULT_ADMIN_ROLE, UPGRADER_ROLE, OPERATOR_ROLE and PAUSER_ROLE, and has 0 bytes of code, so onchain it is one signing key, not a multisig contract. The `RoleGranted` events show no other account was ever given those roles; `0x7513...1431` holds only WHITELIST_MANAGER. There are no `RoleRevoked` events.
 8. **What depositors got.** All six depositing wallets were credited 10,000 RLS per 1,000 BRL1.p (2,500,000 RLS in total). Week 1 now reads 5,000, which would give 1,250,000 for the same deposits. This matches what AJ said at the Rayls AMA on 20 Oct (8:18): the initial R$250K got 10,000 per 1,000.
 9. **Where the money sits.** The contract holds 250,000 BRL1.p, `vault()` was still the zero address on 23 Oct, and the lock ends 2026-11-19 23:59:59.
 
@@ -62,7 +62,6 @@ From `vault-report-v3-20261023-1402-UTC.txt` (output of `vault-check.ps1`), `cod
 
 - Behaviour of 1.1.0 at source level. The opcode diff finds no logic change in the old functions, but only the published source proves it.
 - How the single key is protected off-chain. MPC or a hardware wallet would still look like one key onchain.
-- The pre-upgrade state read from a node: the public RPC is pruned, so "before" comes from the transactions and the verified source.
 - All reads went through one public RPC node and the Rayls explorer.
 
 ## Reproduce it
@@ -74,7 +73,7 @@ python compare_selectors.py code-old.hex code-new.hex
 python opcode_diff.py code-old.hex code-new.hex
 ```
 
-The saved outputs are `compare-selectors-output.txt` and `opcode-diff-output.txt`. The scripts only send read requests (`eth_call`, `eth_getCode`, `eth_getStorageAt`, `eth_getTransactionByHash`, `eth_getBlockByNumber`). They never sign or send a transaction.
+The saved outputs are `compare-selectors-output.txt` and `opcode-diff-output.txt`. `contract-events.txt` lists every event the contract emitted, from the explorer API. The scripts only send read requests (`eth_call`, `eth_getCode`, `eth_getStorageAt`, `eth_getTransactionByHash`, `eth_getBlockByNumber`). They never sign or send a transaction.
 
 ## Sources
 
