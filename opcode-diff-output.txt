@@ -1,0 +1,123 @@
+old: 9427 opcodes, new: 9800 opcodes, similarity 0.9716
+regions that differ: 60, opcodes only in new: 460, only in old: 87
+summary: {'dispatcher order': 13, 'data offset shifted by 408': 34, 'new or moved code': 5, 'constant changed': 4, 'same constant, now copied from code': 3, 'compiler metadata': 1}
+  [dispatcher order] replace old 13-14 (1): 63:91d14854
+          new 13-14 (1): 63:9bc4f0e2
+  [dispatcher order] insert old 58-58 (0): 
+          new 58-63 (5): 14 PUSH:dest 57 80 63:f2eab735
+  [dispatcher order] replace old 124-125 (1): 63:ad3cb1cc
+          new 129-130 (1): 63:b5190e4a
+  [dispatcher order] replace old 158-159 (1): 63:ad3cb1cc
+          new 163-164 (1): 63:b5190e4a
+  [dispatcher order] replace old 177-178 (1): 63:a217fddf
+          new 182-183 (1): 63:a97b7676
+  [dispatcher order] delete old 179-184 (5): PUSH:dest 57 80 63:a217fddf 14
+          new 184-184 (0): 
+  [dispatcher order] insert old 201-201 (0): 
+          new 201-206 (5): 80 63:ad3cb1cc 14 PUSH:dest 57
+  [dispatcher order] delete old 205-210 (5): 80 63:91d14854 14 PUSH:dest 57
+          new 210-210 (0): 
+  [dispatcher order] insert old 217-217 (0): 
+          new 217-222 (5): 14 PUSH:dest 57 80 63:a217fddf
+  [dispatcher order] replace old 235-236 (1): 63:7627ee5a
+          new 240-241 (1): 63:7f649783
+  [dispatcher order] delete old 237-242 (5): PUSH:dest 57 80 63:7627ee5a 14
+          new 242-242 (0): 
+  [dispatcher order] insert old 256-256 (0): 
+          new 256-261 (5): 14 PUSH:dest 57 80 63:91d14854
+  [dispatcher order] insert old 275-275 (0): 
+          new 280-285 (5): 14 PUSH:dest 57 80 63:7627ee5a
+  [data offset shifted by 408] replace old 853-854 (1): 61:3714
+          new 863-864 (1): 61:38ac
+  [data offset shifted by 408] replace old 970-971 (1): 61:3674
+          new 980-981 (1): 61:380c
+  [new or moved code] insert old 1256-1256 (0): 
+          new 1266-1303 (37): PUSH:dest 56 5b 34 80 15 PUSH:dest 57 ...
+  [data offset shifted by 408] replace old 1560-1561 (1): 61:36d4
+          new 1607-1608 (1): 61:386c
+  [new or moved code] insert old 1602-1602 (0): 
+          new 1649-1669 (20): PUSH:dest 36 60:04 PUSH:dest 56 5b PUSH:dest 56 ...
+  [data offset shifted by 408] replace old 1605-1606 (1): 61:36b4
+          new 1672-1673 (1): 61:384c
+  [constant changed] replace old 1714-1715 (1): 64:0312e302e3
+          new 1781-1782 (1): 64:0312e312e3
+  [data offset shifted by 408] replace old 2210-2211 (1): 61:36b4
+          new 2277-2278 (1): 61:384c
+  [data offset shifted by 408] replace old 2243-2244 (1): 61:36f4
+          new 2310-2311 (1): 61:388c
+  [data offset shifted by 408] replace old 2476-2477 (1): 61:3734
+          new 2543-2544 (1): 61:38cc
+  [data offset shifted by 408] replace old 2548-2549 (1): 61:36d4
+          new 2615-2616 (1): 61:386c
+  [data offset shifted by 408] replace old 2593-2594 (1): 61:3694
+          new 2660-2661 (1): 61:382c
+  [data offset shifted by 408] replace old 2608-2609 (1): 61:36b4
+          new 2675-2676 (1): 61:384c
+  [same constant, now copied from code] replace old 2981-2982 (1): 7f:8fbfd2b3c3ee6d677a4371071944f9bf6d88f636a6d886dbc661aaed6dd8ff3d
+          new 3048-3059 (11): 5f 51 60:20 61:38ec 5f 39 5f 51 ...
+  [data offset shifted by 408] replace old 3294-3295 (1): 61:36b4
+          new 3371-3372 (1): 61:384c
+  [data offset shifted by 408] replace old 3311-3312 (1): 61:3674
+          new 3388-3389 (1): 61:380c
+  [data offset shifted by 408] replace old 3328-3329 (1): 61:36d4
+          new 3405-3406 (1): 61:386c
+  [data offset shifted by 408] replace old 3441-3442 (1): 61:3674
+          new 3518-3519 (1): 61:380c
+  [data offset shifted by 408] replace old 3464-3465 (1): 61:36d4
+          new 3541-3542 (1): 61:386c
+  [data offset shifted by 408] replace old 3484-3485 (1): 61:3674
+          new 3561-3562 (1): 61:380c
+  [data offset shifted by 408] replace old 3511-3512 (1): 61:36f4
+          new 3588-3589 (1): 61:388c
+  [data offset shifted by 408] replace old 3554-3555 (1): 61:3714
+          new 3631-3632 (1): 61:38ac
+  [data offset shifted by 408] replace old 3733-3734 (1): 61:36b4
+          new 3810-3811 (1): 61:384c
+  [same constant, now copied from code] replace old 3868-3869 (1): 7f:8fbfd2b3c3ee6d677a4371071944f9bf6d88f636a6d886dbc661aaed6dd8ff3d
+          new 3945-3956 (11): 5f 51 60:20 61:38ec 5f 39 5f 51 ...
+  [data offset shifted by 408] replace old 4048-4049 (1): 61:36b4
+          new 4135-4136 (1): 61:384c
+  [data offset shifted by 408] replace old 4787-4788 (1): 61:3734
+          new 4874-4875 (1): 61:38cc
+  [data offset shifted by 408] replace old 5376-5377 (1): 61:3734
+          new 5463-5464 (1): 61:38cc
+  [data offset shifted by 408] replace old 5505-5506 (1): 61:36b4
+          new 5592-5593 (1): 61:384c
+  [new or moved code] insert old 5738-5738 (0): 
+          new 5825-6089 (264): 51 60:20 61:384c 5f 39 5f 51 90 ...
+  [data offset shifted by 408] replace old 5954-5955 (1): 61:3734
+          new 6305-6306 (1): 61:38cc
+  [data offset shifted by 408] replace old 5971-5972 (1): 61:3734
+          new 6322-6323 (1): 61:38cc
+  [data offset shifted by 408] replace old 5989-5990 (1): 61:3714
+          new 6340-6341 (1): 61:38ac
+  [data offset shifted by 408] replace old 6024-6025 (1): 61:36f4
+          new 6375-6376 (1): 61:388c
+  [data offset shifted by 408] replace old 6129-6130 (1): 61:36f4
+          new 6480-6481 (1): 61:388c
+  [data offset shifted by 408] replace old 6203-6204 (1): 61:3714
+          new 6554-6555 (1): 61:38ac
+  [constant changed] replace old 6251-6252 (1): 7f:00000000000000000000000039ffae6736a9477797548a17019d544c3dbe9f67
+          new 6602-6603 (1): 7f:00000000000000000000000039bf309dba73c90f93f9af74eedb673f53447acb
+  [constant changed] replace old 6258-6259 (1): 7f:00000000000000000000000039ffae6736a9477797548a17019d544c3dbe9f67
+          new 6609-6610 (1): 7f:00000000000000000000000039bf309dba73c90f93f9af74eedb673f53447acb
+  [data offset shifted by 408] replace old 6269-6270 (1): 61:3694
+          new 6620-6621 (1): 61:382c
+  [data offset shifted by 408] replace old 6414-6415 (1): 61:3694
+          new 6765-6766 (1): 61:382c
+  [constant changed] replace old 6456-6457 (1): 7f:00000000000000000000000039ffae6736a9477797548a17019d544c3dbe9f67
+          new 6807-6808 (1): 7f:00000000000000000000000039bf309dba73c90f93f9af74eedb673f53447acb
+  [same constant, now copied from code] replace old 6797-6798 (1): 7f:8fbfd2b3c3ee6d677a4371071944f9bf6d88f636a6d886dbc661aaed6dd8ff3d
+          new 7148-7159 (11): 5f 51 60:20 61:38ec 5f 39 5f 51 ...
+  [data offset shifted by 408] replace old 7107-7108 (1): 61:3714
+          new 7468-7469 (1): 61:38ac
+  [data offset shifted by 408] replace old 7425-7426 (1): 61:3714
+          new 7786-7787 (1): 61:38ac
+  [data offset shifted by 408] replace old 7695-7696 (1): 61:3694
+          new 8056-8057 (1): 61:382c
+  [new or moved code] insert old 9008-9008 (0): 
+          new 9369-9389 (20): 60:20 82 84 03 12 15 PUSH:dest 57 ...
+  [new or moved code] delete old 9234-9254 (20): 5f 60:20 82 84 03 12 15 PUSH:dest ...
+          new 9615-9615 (0): 
+  [compiler metadata] replace old 9415-9421 (6): 6d:003becc55f00a264697066735822 12 20 5d 7c:a7355f0c1a5d6c7b5d909f9e6d9f29b07fbab329e06c841799a1e162a0 e8
+          new 9776-9794 (18): 6d:003becc55f008fbfd2b3c3ee6d67 7a:4371071944f9bf6d88f636a6d886dbc661aaed6dd8ff3da2646970 66:73582212207921 e1 c2 c9 ed 55 ...
